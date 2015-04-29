@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 		<link rel="stylesheet" href="css/katalisthenics.css">
 
 		<!-- Code syntax highlighting -->
@@ -133,23 +133,20 @@
 					<section>
 						<h2>Régle 3 : Encapsuler tous les types primitifs et String</h2>
 
-						<h4>Primitive Obsession anti-pattern</h4>
-						<p>C'est l'utilisation des primitifs pour représenter des objet métier</p>
-						<ul>
-							<li>String pour représenter un Message</li>
-							<li>Integer pour représenter un Montant</li>
-						</ul>
+						<h4 class="fragment">Primitive Obsession anti-pattern</h4>
+						<blockquote class="fragment">C'est l'utilisation des primitifs pour représenter des objet métier, comme le fait d'utiliser un <u>String</u>
+							pour représenter un <u>Message</u> ou un <u>Integer</u> pour représenter un <u>Montant</u></blockquote>
 
-						<p>Solution: <strong>ValueObject</strong><br />
-							En effet: Si vous devez faire des opérations sur la variable primitif, vous devez l'encapsuler.
-						</p>
+
+						<h4 class="fragment">Solution: ValueObject</h4>
+						<blockquote class="fragment">Si vous devez faire des <u>opérations</u> sur la variable primitif, vous devez <u>l'encapsuler</u></blockquote>
 					</section>
 
 					<section>
 						<h2>Régle 4 : Utiliser les collections first class</h2>
 
-						<p>Ne pas utiliser par exemple des List&lt;String&gt; users mais plutôt une classe plus explicite, comme par exemple Users.</p>
-						<p>Chaque class contenant une collection ne doit pas contenir un autre attribut</p>
+						<p class="fragment">Ne pas utiliser par exemple des <code class="inline">List&lt;String&gt; users</code> mais plutôt une classe plus explicite, comme par exemple <code class="inline">Users users</code></p>
+						<blockquote class="fragment">Chaque class contenant une collection ne doit pas contenir un autre attribut</blockquote>
 					</section>
 
 					<section>
