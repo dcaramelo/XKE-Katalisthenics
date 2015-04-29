@@ -60,8 +60,14 @@
 				</section>
 
 				<section>
+
 					<section>
 						<h2>Régle 1 : Un seul niveau d'indentation par méthode</h2>
+
+						a method with a lot of different indentation is harder to understand than a method with less indentation
+						each level of indentation typically means you're doing another thing.
+						=> Single Responsibility Principle
+
 						<table>
 							<tr>
 								<td>
@@ -114,62 +120,40 @@
 
 					<section>
 						<h2>Régle 2 : Ne pas utiliser le mot clé ELSE</h2>
-						<table>
-							<tr>
-								<td>
-									<pre><code data-trim contenteditable>public void login(String username, String password) {
-    if (userRepository.isValid(username, password)) {
-        redirect('homepage');
-    } else {
-        addFlash('error', 'Bad credentials');
 
-        redirect('login');
-    }
-}</code></pre>
-								</td>
-																<td>
-									<pre><code data-trim contenteditable>public void login(String username, String password) {
-    if (userRepository.isValid(username, password)) {
-        return redirect('homepage');
-    }
+						Some people think that the if branch should be the every thing is good branch and the else branch being the error case.
 
-    addFlash('error', 'Bad credentials');
+						Others think the if branch should be as short as possible since it makes it easier to understand what would bring us into the else branch.
 
-    return redirect('login');
-}
-///////////////////////////////////
-public void login(String username, String password) {
-    String redirectRoute = 'homepage';
-
-    if (!userRepository.isValid(username, password)) {
-        addFlash('error', 'Bad credentials');
-        redirectRoute = 'login';
-    }
-
-    redirect(redirectRoute);
-}</code></pre>
-								</td>
-							</tr>
-						</table>
+						But this rule is about putting you into a situation where you have to consider other ways to implement your conditional logic.
+						Early return, Variable, Polymorphism and the Null Object pattern being two good alternatives.
 					</section>
 
 					<section>
 						<h2>Régle 3 : Encapsuler tous les types primitifs et String</h2>
-						
-						<p>Following this rule is pretty easy, you simply have to encapsulate all the primitives within objects, in order to avoid the Primitive Obsession anti-pattern.</p>
 
-						<p>If the variable of your primitive type has a behaviors, you MUST encapsulate it. And this is especially true for Domain Driven Design. DDD describes Value Objects like Money, or Hour for instance.</p>
+						<h4>Primitive Obsession anti-pattern</h4>
+						<p>C'est l'utilisation des primitifs pour représenter des objet métier</p>
+						<ul>
+							<li>String pour représenter un Message</li>
+							<li>Integer pour représenter un Montant</li>
+						</ul>
+
+						<p>Solution: <strong>ValueObject</strong><br />
+							En effet: Si vous devez faire des opérations sur la variable primitif, vous devez l'encapsuler.
+						</p>
 					</section>
 
 					<section>
 						<h2>Régle 4 : Utiliser les collections first class</h2>
-						
-						<p>Ne pas utiliser par exemple des List&lt;String&gt; usernames mais plutôt une classe plus explicite, comme par exemple Usernames.</p>
+
+						<p>Ne pas utiliser par exemple des List&lt;String&gt; users mais plutôt une classe plus explicite, comme par exemple Users.</p>
+						<p>Chaque class contenant une collection ne doit pas contenir un autre attribut</p>
 					</section>
 
 					<section>
 						<h2>Régle 5 : Un seul point par ligne</h2>
-						
+
 						<p>Basically, the rule says that you should not chain method calls. However, it doesn't apply to Fluent Interfaces and more generally to anything implementing the Method Chaining Pattern (e.g. a Query Builder).</p>
 
 						<p>For other classes, you should respect this rule. It is the direct use of the Law of Demeter, saying only talk to your immediate friends, and don't talk to strangers.</p>
@@ -179,7 +163,7 @@ public void login(String username, String password) {
 
 					<section>
 						<h2>Régle 6 : Pas d'abréviation</h2>
-						
+
 						<p>You may answer that it is because you write the same name over and over again? And I would answer that this method is reused multiple times, and that it looks like code duplication.</p>
 
 						<p>So you will say that the method name is too long anyway. And I would tell you that maybe your class has multiple responsibilities, which is bad as it violates the Single Responsibility Principle.</p>
@@ -191,14 +175,14 @@ public void login(String username, String password) {
 
 					<section>
 						<h2>Régle 7 : Limiter la taille des entités</h2>
-						
+
 						<p>No class over 50 lines and no package over 10 files.</p>
 						<p>The idea behind this rule is that long files are harder to read, harder to understand, and harder to maintain.</p>
 					</section>
 
 					<section>
 						<h2>Régle 8 : Deux attributs de class maximum</h2>
-						
+
 						<p>The main question was Why two attributes? My answer was Why not? Not the best explanation but, in my opinion, the main idea is to distinguish two kinds of classes, those that maintain the state of a single instance variable, and those that coordinate two separate variables. Two is an arbitrary choice that forces you to decouple your classes a lot.</p>
 					</section>
 
@@ -206,9 +190,9 @@ public void login(String username, String password) {
 						<h2>Régle 9 : Pas de Getter/Setter ni Properties</h2>
 
 						<p>Tell, don't ask.</p>
-						
+
 						<p>It is okay to use accessors to get the state of an object, as long as you don't use the result to make decisions outside the object. Any decisions based entirely upon the state of one object should be made inside the object itself.</p>
-					</section>			
+					</section>
 
 				</section>
 
@@ -219,32 +203,46 @@ public void login(String username, String password) {
 
 					<section>
 						<h2>Sprint 1</h2>
-						<p>
-							Deposit & Withdraw
-						</p>
+
+						<div class="user-story">
+							<p><strong>En tant que</strong> client de la banque</p>
+							<p><strong>Je veux</strong> effectuer un dépôt d'arget sur mon compte</p>
+							<p><strong>Afin d</strong>'épargner</p>
+						</div>
+						<div class="user-story">
+							<p><strong>En tant que</strong> client de la banque</p>
+							<p><strong>Je veux</strong> effectuer un retrait d'arget sur mon compte</p>
+							<p><strong>Afin de</strong> récuperer une partie ou la totalitée de mon épargne</p>
+						</div>
 					</section>
 
 					<section>
 						<h2>Sprint 2</h2>
-						<p>
-							Historique (date, amount, balance)
-						</p>
+
+						<div class="user-story">
+							<p><strong>En tant que</strong> client de la banque</p>
+							<p><strong>Je veux</strong> que mon compte garde l'historique (date, montant, balance) de chaque dépôt/retrait</p>
+							<p><strong>Afin de</strong> le consulter ultérieurement</p>
+						</div>
 					</section>
-					
+
 					<section>
 						<h2>Sprint 3</h2>
-						<p>
-							Affichage (date, amount, balance)
-						</p>
+
+						<div class="user-story">
+							<p><strong>En tant que</strong> client de la banque</p>
+							<p><strong>Je veux</strong> consulter l'historique de mes opérations</p>
+							<p><strong>Afin de</strong> vérifier que la banque ne me vole pas</p>
+						</div>
 					</section>
-					
+
 					<section>
 						<h2>Sprint 4</h2>
 						<p>
 							Transfert
 						</p>
 					</section>
-					
+
 					<section>
 						<h2>Sprint 5</h2>
 						<p>
