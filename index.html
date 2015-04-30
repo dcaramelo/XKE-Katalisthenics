@@ -46,21 +46,20 @@
 				</section>
 
 				<section>
+					<section>
 					<h2>Object Catalisthenics, les régles :</h2>
-					<ol>
-						<li class="fragment">Un seul niveau d'indentation par méthode</li>
-						<li class="fragment">Ne pas utiliser le mot clé ELSE</li>
-						<li class="fragment">Encapsuler tous les types primitifs et String</li>
-						<li class="fragment">Utiliser les collections first class</li>
-						<li class="fragment">Un seul point par ligne</li>
-						<li class="fragment">Pas d'abréviation</li>
-						<li class="fragment">Limiter la taille des entités</li>
-						<li class="fragment">Deux attributs de class maximum</li>
-						<li class="fragment">Pas de Getter/Setter ni Properties</li>
-					</ol>
-				</section>
-
-				<section>
+                        <ol>
+                            <li class="fragment">Un seul niveau d'indentation par méthode</li>
+                            <li class="fragment">Ne pas utiliser le mot clé ELSE</li>
+                            <li class="fragment">Encapsuler tous les types primitifs et String</li>
+                            <li class="fragment">Utiliser les collections first class</li>
+                            <li class="fragment">Un seul point par ligne</li>
+                            <li class="fragment">Pas d'abréviation</li>
+                            <li class="fragment">Limiter la taille des entités</li>
+                            <li class="fragment">Deux attributs de class maximum</li>
+                            <li class="fragment">Pas de Getter/Setter ni Properties</li>
+                        </ol>
+                    </section>
 
 					<section>
 						<h2>Régle 1 : Un seul niveau d'indentation par méthode</h2>
@@ -152,45 +151,42 @@
 					<section>
 						<h2>Régle 5 : Un seul point par ligne</h2>
 
-						<p>Basically, the rule says that you should not chain method calls. However, it doesn't apply to Fluent Interfaces and more generally to anything implementing the Method Chaining Pattern (e.g. a Query Builder).</p>
-
-						<p>For other classes, you should respect this rule. It is the direct use of the Law of Demeter, saying only talk to your immediate friends, and don't talk to strangers.</p>
+						<p>Loi de Demeter : Parler à vos amis immédiats, et ne pas parler aux étrangers.</p>
+						
+						<p>Bien-sûr, cela ne concerne pas les patterns Fluent.</p>
 
 						<pre><code data-trim>buf.append(loc.current.representation.substring(0, 1));</code></pre>
 					</section>
 
 					<section>
 						<h2>Régle 6 : Pas d'abréviation</h2>
+						
+						<p>Code clair = Code maintenable</p>
 
-						<p>You may answer that it is because you write the same name over and over again? And I would answer that this method is reused multiple times, and that it looks like code duplication.</p>
-
-						<p>So you will say that the method name is too long anyway. And I would tell you that maybe your class has multiple responsibilities, which is bad as it violates the Single Responsibility Principle.</p>
-
-						<p>I often say that if you can't find a decent name for a class or a method, something is probably wrong. It is a rule I use to follow while designing a software by naming things.</p>
-
-						<p>Don't abbreviate, period.</p>
+						<p>Si le nom de la d'une méthode est trop long ou si vous avez un souci pour trouver un nom, c'est peut-être que la méthode fait trop de chose.</p>
 					</section>
 
 					<section>
-						<h2>Régle 7 : Limiter la taille des entités</h2>
-
-						<p>No class over 50 lines and no package over 10 files.</p>
-						<p>The idea behind this rule is that long files are harder to read, harder to understand, and harder to maintain.</p>
+						<h2>Régle 7 : Limiter la taille.</h2>
+						
+						<p>50 lignes de code par class et pas plus de 10 fichiers pas packages.</p>
+						<p>L'idée derrière cette règle est que des fichiers longs sont plus difficiles à lire, plus difficile à comprendre, et plus difficile à maintenir.</p>
 					</section>
 
 					<section>
 						<h2>Régle 8 : Deux attributs de class maximum</h2>
-
-						<p>The main question was Why two attributes? My answer was Why not? Not the best explanation but, in my opinion, the main idea is to distinguish two kinds of classes, those that maintain the state of a single instance variable, and those that coordinate two separate variables. Two is an arbitrary choice that forces you to decouple your classes a lot.</p>
+						
+						<p>Pourquoi deux attributs ? Il n'y a pas de réponse exacte, mais nous pourrions nous demander aussi, pourquoi pas ?</p>
+						<p>L'idée est de nous imposer une contrainte afin de nous obliger à réflechir et découper vos class en objet beaucoup plus fonctionnelle.</p>
 					</section>
 
 					<section>
 						<h2>Régle 9 : Pas de Getter/Setter ni Properties</h2>
 
 						<p>Tell, don't ask.</p>
-
-						<p>It is okay to use accessors to get the state of an object, as long as you don't use the result to make decisions outside the object. Any decisions based entirely upon the state of one object should be made inside the object itself.</p>
-					</section>
+						
+						<p>Il est acceptable d'utiliser des getters pour obtenir l'état d'un objet, mais vous ne devez pas l'utiliser le résultat afin de prendre des décisions en dehors de l'objet. Toutes les décisions basées sur l'état d'un objet doivent être faites à l'intérieur de l'objet lui-même.</p>
+					</section>			
 
 				</section>
 
@@ -236,18 +232,103 @@
 
 					<section>
 						<h2>Sprint 4</h2>
-						<p>
-							Transfert
-						</p>
+
+                        <div class="user-story">
+                            <p><strong>En tant que</strong> client de la banque j'ai un compte avec 500 euros</p>
+                            <p><strong>Je veux</strong> faire un transfert de 50 euros sur un autre compte</p>
+                            <p><strong>Alors</strong> une operation de type transfert de 50 euros en débit apparait sur mon historique</p>
+                            <p><strong>Et </strong> mon solde du compte est de 450 euros</p>
+                        </div>
+
+                        <div class="user-story">
+                            <p><strong>En tant que</strong> client de la banque j'ai un compte avec 100 euros</p>
+                            <p><strong>Lors</strong> je reçois un transfert de 40 euros d'un autre compte</p>
+                            <p><strong>Alors</strong> une operation de type transfert de 40 euros en crédit apparait sur mon historique</p>
+                            <p><strong>Et </strong> mon solde du compte est de 140 euros</p>
+                        </div>
 					</section>
 
 					<section>
 						<h2>Sprint 5</h2>
+
+                        <div class="user-story">
+                            <p><strong>En tant que</strong> client de la banque j'ai un compte sur lequel il y a les opérations suivantes</p>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Valeur</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>DEPOSIT</td>
+                                    <td>900</td>
+                                    <td>2015-01-1 14:35:00</td>
+                                </tr>
+                                <tr>
+                                    <td>TRANSFERT IN</td>
+                                    <td>40</td>
+                                    <td>2015-01-1 14:37:00</td>
+                                </tr>
+                                <tr>
+                                    <td>WITHDRAW</td>
+                                    <td>800</td>
+                                    <td>2015-01-2 17:22:34</td>
+                                </tr>
+                                <tr>
+                                    <td>DEPOSIT</td>
+                                    <td>150</td>
+                                    <td>2015-01-3 08:12:21</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p><strong>Je veux</strong> rechercher les opérations de type DEPOSIT</p>
+                            <p><strong>Alors</strong> je retrouve les opérations suivantes</p>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Valeur</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>DEPOSIT</td>
+                                    <td>900</td>
+                                    <td>2015-01-1 14:35:00</td>
+                                </tr>
+                                <tr>
+                                    <td>DEPOSIT</td>
+                                    <td>150</td>
+                                    <td>2015-01-3 08:12:21</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
 						<p>
-							Statement filters (just deposits, withdrawal, date)
+							Bonus : Faire le filtre pour les montants, date.
 						</p>
 					</section>
-				</section>
+                </section>
+                <section>
+                    <section>
+                        <h1>Bilan</h1>
+                    </section>
+                    <section>
+                        Le ressentie sur l'apport des contraintes ?
+                    </section>
+                    <section>
+                        Utilisable dans la vie de tous les jours ?
+                    </section>
+                    <section>
+                        <h1>MERCI</h1>
+                    </section>
+                </section>
+
 
 			</div>
 
