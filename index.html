@@ -64,69 +64,18 @@
 					<section>
 						<h2>Régle 1 : Un seul niveau d'indentation par méthode</h2>
 
-						a method with a lot of different indentation is harder to understand than a method with less indentation
-						each level of indentation typically means you're doing another thing.
-						=> Single Responsibility Principle
-
-						<table>
-							<tr>
-								<td>
-									<pre><code data-trim contenteditable>class Board {
-    public String board() {
-        StringBuilder buf = new StringBuilder();
-
-        // 0
-        for (int i = 0; i < 10; i++) {
-            // 1
-            for (int j = 0; j < 10; j++) {
-                // 2
-                buf.append(data[i][j]);
-            }
-            buf.append("\n");
-        }
-
-        return buf.toString();
-    }
-}</code></pre>
-								</td>
-																<td>
-									<pre><code data-trim contenteditable>class Board {
-    public String board() {
-        StringBuilder buf = new StringBuilder();
-
-        collectRows(buf);
-
-        return buf.toString();
-    }
-
-    private void collectRows(StringBuilder buf) {
-        for (int i = 0; i < 10; i++) {
-            collectRow(buf, i);
-        }
-    }
-
-    private void collectRow(StringBuilder buf, int row) {
-        for (int i = 0; i < 10; i++) {
-            buf.append(data[row][i]);
-        }
-
-        buf.append("\n");
-    }
-}</code></pre>
-								</td>
-							</tr>
-						</table>
+						<p class="fragment">Une méthode avec plusieurs niveau d'indentation est plus difficile à comprendre qu'une méthode qu'en a moins.</p>
+						<p class="fragment"><strong>En règle générale</strong>: Chaque niveau d'indentation signifie que vous faites autre chose</p>
+						<blockquote class="fragment">Single Responsibility Principle</blockquote>
 					</section>
 
 					<section>
 						<h2>Régle 2 : Ne pas utiliser le mot clé ELSE</h2>
 
-						Some people think that the if branch should be the every thing is good branch and the else branch being the error case.
-
-						Others think the if branch should be as short as possible since it makes it easier to understand what would bring us into the else branch.
-
-						But this rule is about putting you into a situation where you have to consider other ways to implement your conditional logic.
-						Early return, Variable, Polymorphism and the Null Object pattern being two good alternatives.
+						<p class="fragment">L'objectif de cette régle est de vous mettre dans une situation où vous devez envisager d'autres solutions pour
+							mettre en œuvre votre logique conditionnelle.</p>
+						<blockquote class="fragment">Early return, Return variable</blockquote>
+						<blockquote class="fragment">Polymorphism ou Null Object pattern</blockquote>
 					</section>
 
 					<section>
@@ -151,42 +100,45 @@
 					<section>
 						<h2>Régle 5 : Un seul point par ligne</h2>
 
-						<p>Loi de Demeter : Parler à vos amis immédiats, et ne pas parler aux étrangers.</p>
-						
-						<p>Bien-sûr, cela ne concerne pas les patterns Fluent.</p>
+						<p class="fragment">Loi de Demeter : Parler à vos amis immédiats, et ne pas parler aux étrangers.</p>
 
-						<pre><code data-trim>buf.append(loc.current.representation.substring(0, 1));</code></pre>
+						<p class="fragment">Bien-sûr, cela ne concerne pas les patterns Fluent.</p>
+
+						<pre class="fragment"><code>buf.append(loc.current.representation.substring(0, 1));</code></pre>
 					</section>
 
 					<section>
 						<h2>Régle 6 : Pas d'abréviation</h2>
-						
-						<p>Code clair = Code maintenable</p>
 
-						<p>Si le nom de la d'une méthode est trop long ou si vous avez un souci pour trouver un nom, c'est peut-être que la méthode fait trop de chose.</p>
+						<p class="fragment">Code clair = Code maintenable</p>
+						<p class="fragment">Si le nom de la d'une méthode est trop long ou si vous avez un souci pour trouver un nom, c'est peut-être que la
+							méthode fait trop de chose.</p>
 					</section>
 
 					<section>
 						<h2>Régle 7 : Limiter la taille.</h2>
-						
-						<p>50 lignes de code par class et pas plus de 10 fichiers pas packages.</p>
-						<p>L'idée derrière cette règle est que des fichiers longs sont plus difficiles à lire, plus difficile à comprendre, et plus difficile à maintenir.</p>
+
+						<p class="fragment">50 lignes de code par class et pas plus de 10 fichiers pas packages.</p>
+						<p class="fragment">L'idée derrière cette règle est que des fichiers longs sont plus difficiles à lire, plus difficile à comprendre,
+							et plus difficile à maintenir.</p>
 					</section>
 
 					<section>
 						<h2>Régle 8 : Deux attributs de class maximum</h2>
-						
-						<p>Pourquoi deux attributs ? Il n'y a pas de réponse exacte, mais nous pourrions nous demander aussi, pourquoi pas ?</p>
-						<p>L'idée est de nous imposer une contrainte afin de nous obliger à réflechir et découper vos class en objet beaucoup plus fonctionnelle.</p>
+
+						<p class="fragment">Pourquoi deux attributs ? Il n'y a pas de réponse exacte, mais nous pourrions nous demander aussi, pourquoi pas ?</p>
+						<p class="fragment">L'idée est de nous imposer une contrainte afin de nous obliger à réflechir et découper vos class en objet beaucoup
+							plus fonctionnelle.</p>
 					</section>
 
 					<section>
 						<h2>Régle 9 : Pas de Getter/Setter ni Properties</h2>
 
-						<p>Tell, don't ask.</p>
-						
-						<p>Il est acceptable d'utiliser des getters pour obtenir l'état d'un objet, mais vous ne devez pas l'utiliser le résultat afin de prendre des décisions en dehors de l'objet. Toutes les décisions basées sur l'état d'un objet doivent être faites à l'intérieur de l'objet lui-même.</p>
-					</section>			
+						<p class="fragment">Tell, don't ask.</p>
+						<p class="fragment">Il est acceptable d'utiliser des getters pour obtenir l'état d'un objet, mais vous ne devez pas l'utiliser le résultat
+							afin de prendre des décisions en dehors de l'objet. Toutes les décisions basées sur l'état d'un objet doivent être faites
+							à l'intérieur de l'objet lui-même.</p>
+					</section>
 
 				</section>
 
@@ -328,7 +280,6 @@
                         <h1>MERCI</h1>
                     </section>
                 </section>
-
 
 			</div>
 
