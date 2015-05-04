@@ -1,6 +1,6 @@
 package fr.xebia.xke.katalisthenics
 
-class Amount(private val value: Int) {
+case class Amount(private val value: Int) {
 
   // Add and sub operations
   def +(that: Amount) = new Amount(this.value + that.value)
@@ -19,8 +19,4 @@ class Amount(private val value: Int) {
   }
 
   override def hashCode() = value.hashCode()
-}
-
-object Amount {
-  def apply(value: Int) = new Amount(value)
 }

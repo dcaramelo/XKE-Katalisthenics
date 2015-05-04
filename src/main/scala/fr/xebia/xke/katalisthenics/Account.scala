@@ -4,7 +4,7 @@ import java.util.Calendar
 
 import fr.xebia.xke.katalisthenics.transactions._
 
-class Account(private val user: String) {
+case class Account(private val user: String) {
 
   /**
    * Account transaction history
@@ -34,8 +34,4 @@ class Account(private val user: String) {
   }
 
   override def hashCode() = user.hashCode
-}
-
-object Account {
-  def apply(user: String) = new Account(user)
 }
